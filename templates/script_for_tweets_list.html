@@ -1,0 +1,9 @@
+{% for tweet in context.tweets_list %}
+  <div class="tweet border border-2 rounded" style="padding: 20px;">
+    <p>{{ tweet["full_text"] }}</p>
+    <span style="font-size: 8;"><a href="{{ tweet['twitter_status_url'] }}">{{ tweet['formatted_date'] }}</a> |</span>
+    <span style="font-size: 8;">{{ tweet['formatted_time'] }} |</span>
+    <span style="font-size: 8;">Like: {{ tweet['favorite_count'] }} |</span>
+    <span style="font-size: 8;">Retweets: {{ tweet['retweet_count'] }}</span>
+  </div>
+{% endfor %}

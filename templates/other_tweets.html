@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Other Tweets{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  
+  <div class="input-group mb-3" style="margin: 20px;">
+    <input type="text" class="form-control" id="q" placeholder="Search Query">
+    <input type="date" class="form-control" id="date" name="trip-start" value="{{ context.current_date }}" max="{{ context.current_date }}" min="{{ context.last_date_from_current_date }}"> 
+    <button class="btn btn-primary" id="search_button" onclick="search_tweets()">Search</button>
+  </div>
+
+  <div class="tweets_area" id="tweets_area">
+
+  </div>
+
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script>
+search_tweets = () => {
+  var data = {
+    date: document.querySelector("#date").value,
+    query: document.querySelector("#q").value
+  }
+  var url = new URL("http://127.0.0.1:5000/search_tweets")
+  for (let k in data) {
+    url.searchParams.append(k, data[k])
+  }
+  console.log(url)
+  fetch(url)
+  .then((result) => {
+    console.log(result);
+    if (result.status != 200) { throw new Error("Bad Server Response"); }
+    return result.json();
+  })
+  .then((response) => {
+
+    var tweets = response["tweets_list"]
+    html = ``
+    for (let k in tweets) {
+      html+=`
+      <div class="tweet border border-2 rounded" style="padding: 20px;">
+        <p>${tweets[k]["full_text"]}</p>
+        <span style="font-size: 8;"><a href="${tweets[k]['twitter_status_url']}">${tweets[k]['formatted_date']}</a> |</span>
+        <span style="font-size: 8;">${tweets[k]['formatted_time']} |</span>
+        <span style="font-size: 8;">Like: ${tweets[k]['favorite_count']} |</span>
+        <span style="font-size: 8;">Retweets: ${tweets[k]['retweet_count']}</span>
+      </div>
+      `
+    }
+    document.querySelector("#tweets_area").innerHTML = html
+  })
+}
+</script>
+{% endblock %}

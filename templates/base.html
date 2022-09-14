@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.12.0/bootstrap-social.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+
+
+    <title>Personal Twitter | {% block title %} {% endblock %}</title>
+
+    <base target="_blank">
+  </head>
+  <body>
+    <div>
+      <h1>Personal Twitter</h1>
+      <hr>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+
+              <li class="nav-item">
+                <a class="nav-link" href="/"><span class="btn btn-info">Home</span></a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/about"><span class="btn btn-info">About</span></a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/"><span class="btn btn-info">Tweets of the day</span></a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/other_tweets"><span class="btn btn-info">Other Tweets</span></a>
+              </li>
+
+            </ul>
+            
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="/logout"><span class="btn btn-info">Sign Out</span></a>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    {% block content %} 
+    {% endblock %}
+
+    <hr>
+    <footer>
+      <center>
+        Made by Tejas
+      </center>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    {% block script %} 
+    {% endblock %}
+  </body>
+</html>

@@ -1,0 +1,5 @@
+Add validations 
+    Frontend
+    Backend
+
+Add Database support
